@@ -22,11 +22,27 @@ const cartActions = {
       });
     },
   onCartAdd:
-    (params) =>
-    ({ setState, getState }) => {},
+    (handle, quantity = 1) =>
+    ({ getState, dispatch }) => {
+      const { [handle]: product } = getState();
+      postData('cart/add.js', {
+        items: [
+          {
+            selling_plan: product.selling_plan_groups[0].selling_plans[0].id,
+            purchase_option:
+              product.variants[0].selling_plan_allocations[0]
+                .selling_plan_group_id,
+            id: product.variants[0].id,
+            quantity,
+          },
+        ],
+      }).then(() => {
+        dispatch(cartActions.getCartData());
+      });
+    },
   onCartUpdate:
     ({ item: itemToBeRemoved, line }) =>
-    ({ setState, dispatch, getState }) => {
+    ({ dispatch, getState }) => {
       const {
         [itemToBeRemoved.handle]: product,
         cart: { items },
@@ -43,30 +59,21 @@ const cartActions = {
           );
         });
 
-        let updatePromise;
         if (itemToBeUpdated) {
-          updatePromise = postData('cart/change.js', {
-            id: itemToBeUpdated.key,
-            quantity: itemToBeUpdated.quantity + itemToBeRemoved.quantity,
-          });
+          dispatch(
+            cartActions.onCartChange({
+              id: itemToBeUpdated.key,
+              quantity: itemToBeUpdated.quantity + itemToBeRemoved.quantity,
+            }),
+          );
         } else {
-          updatePromise = postData('cart/add.js', {
-            items: [
-              {
-                selling_plan:
-                  product.selling_plan_groups[0].selling_plans[0].id,
-                purchase_option:
-                  product.variants[0].selling_plan_allocations[0]
-                    .selling_plan_group_id,
-                id: product.variants[0].id,
-                quantity: itemToBeRemoved.quantity,
-              },
-            ],
-          });
+          dispatch(
+            cartActions.onCartAdd(
+              itemToBeRemoved.handle,
+              itemToBeRemoved.quantity,
+            ),
+          );
         }
-        updatePromise.then((cart) => {
-          dispatch(cartActions.getCartData());
-        });
       });
     },
   onCartChange:
@@ -74,7 +81,6 @@ const cartActions = {
     ({ setState, dispatch }) => {
       console.log(params);
       postForm('cart/change.js', params).then((cart) => {
-        // dispatch(cartActions.getCartData());
         setState({
           cart,
         });

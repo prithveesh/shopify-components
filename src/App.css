@@ -329,3 +329,15 @@
   height: 16px;
   width: 36px;
 }
+
+.side-cart .mini-cart__item button {
+  	grid-column-start: 1;
+    grid-column-end: 4;
+    margin-top: 10px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 0;
+    background-color: black;
+    color: white;
+    border: none;
+  }

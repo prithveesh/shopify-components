@@ -1,38 +1,331 @@
-.App {
-  text-align: center;
+.right {
+    float: right;
+    position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
+.side-cart-wrapper {
+  position: relative;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.active_link.side-cart-wrapper {
+  display: block;
+  z-index: 2147483637;
+  pointer-events: all;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.side-cart-overlay {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.2s ease 0.2s;
+}
+
+.active_link.side-cart-wrapper .side-cart-overlay {
+  transition: opacity 0.2s ease;
+  opacity: 1;
+}
+
+.side-cart {
+  position: fixed;
+  top: 0;
+  padding: 10px;
+  height: calc(100vh - 20px);
+  width: 100%;
+  max-width: 500px;
+  z-index: 2147483638;
+  right: -520px;
+  transition: right 0.3s ease;
+  height: 100vh;
+}
+
+.active_link.side-cart-wrapper .side-cart {
+  right: 0;
+}
+
+.side-cart ul li {
+  margin-bottom: 0;
+}
+
+.side-cart .side-cart-header {
+  flex: 0 0 auto;
+  position: relative;
+  margin: 0;
+  padding: 10px 20px;
+  background: #fff;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #FFD100;
+}
+
+.side-cart .side-cart-header h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 28px;
+  line-height: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.side-cart .side-cart-close {
+  position: absolute;
+  top: 22%;
+  right: 10px;
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  min-width: auto;
+  min-height: auto;
+  line-height: 30px;
+  font-size: 18px;
+  text-align: center;
+  background: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.side-cart .side-cart-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  padding: 10px;
+  overflow: hidden;
+  background: white;
   display: flex;
   flex-direction: column;
+}
+
+.side-cart-form {
+  overflow: hidden;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-cart .cart_items {
+  width: 100%;
+  padding: 0 20px;
+  border-bottom: 1px solid #FFD100;
+  overflow: auto;
+  margin-bottom: 25px;
+}
+
+.side-cart li.mini-cart__item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  column-gap: 20px;
+  padding: 20px 0;
+}
+
+.side-cart .mini-cart__item:not(:last-child) {
+  border-bottom: 1px solid #FFD100;
+}
+
+.side-cart .mini-cart__item .mini-cart__item-title {
+  padding-right: 0;
+}
+
+.side-cart .mini-cart__item .mini-cart__item-title a {
+  color: #000000;
+}
+
+.side-cart .cart_image {
+  display: flex;
+  width: 100%;
+  padding-right: 0;
+}
+
+.side-cart .cart_image img {
+  width: 100%;
+}
+
+.side-cart .side-cart p {
+  margin-bottom: 0;
+}
+
+.side-cart .mini-cart__item-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.side-cart .mini-cart__item-content .meta {
+  margin-bottom: 0;
+}
+
+.side-cart .product-quantity-box {
+  display: flex;
+  flex-direction: row;
+  height: 24px;
+  width: fit-content;
+  margin-top: 10px;
+}
+
+.side-cart .product-quantity-box .qty-icons,
+.side-cart .product-quantity-box .quantity {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 36px;
+  height: 100%;
+  min-width: auto;
+  min-height: auto;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #e3e3e3;
+  position: relative;
+  line-height: 12px;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.side-cart .product-quantity-box .qty-icons img {
+  max-width: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.side-cart .qty-icons {
+  color: #232323;
+  background: #fff;
+  border: none;
+}
+
+.side-cart input.quantity {
+  border-style: solid;
+  border-width: 0 1px 0 1px;
+  border-color: #FFD100;
+  background: none;
+  color: #232323;
+}
+
+.side-cart .product-quantity-box .qty-icons.product-plus svg {
+  transform: scale(0.4);
+  position: relative;
+  top: -6px;
+}
+
+.side-cart .mini-cart__item-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: end;
+  font-weight: bold;
+  padding-top: 0;
+}
+
+.side-cart .cart__remove-btn {
+  background-color: white;
+  top: 0;
+  width: 22px;
+}
+
+.side-cart .cart__remove-btn svg {
+  height: 24px;
+}
+
+.side-cart .side-cart-footer {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  list-style-type: none;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.side-cart .cart_subtotal {
+  font-weight: bold;
+}
+
+.side-cart-buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+
+.side-cart-empty {
+  text-align: center;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -300 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    background-position: 2000 0;
   }
+}
+
+.side-cart-slideout-item {
+  transform: translateX(-120%);
+  transition: transform 0.2s ease;
+}
+
+.side-cart-loading .elem-loading {
+  animation-delay: 0;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  background-color: #EBECF0;
+  background-image: linear-gradient(
+    to right,
+    #EBECF0 10%,
+    #F4F5F7 30%,
+    #EBECF0 80%,
+  );
+  background-repeat: no-repeat;
+  border-radius: 2px;
+}
+
+.cart_image.elem-loading {
+  height: 100px;
+  width: 100px;
+}
+
+.side-cart-title.elem-loading {
+  height: 20px;
+  width: 190px;
+  display: flex;
+}
+
+.meta.elem-loading {
+  height: 10px;
+  width: 190px;
+}
+
+.product-quantity-box.elem-loading {
+  height: 20px;
+  width: 108px;
+}
+
+.delete-icon.elem-loading {
+  height: 14px;
+  width: 14px;
+}
+
+.money.elem-loading {
+  height: 16px;
+  width: 36px;
 }

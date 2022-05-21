@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import SideCart from './side-cart';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener(
+      'open-mini-cart',
+      () => {
+        setOpen(true);
+      },
+      [],
+    );
+    document.addEventListener(
+      'close-mini-cart',
+      () => {
+        setOpen(false);
+      },
+      [],
+    );
+  }, []);
+  return <SideCart isOpen={isOpen} onClose={() => setOpen(false)} />;
 }
 
 export default App;

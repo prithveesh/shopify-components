@@ -1,11 +1,13 @@
-import { useActions } from '../../../../../store';
+import { useActions, useCartLoading } from '../../../../../store';
 import DeleteIcon from './delete.svg';
 
 const DeleteItem = ({ line, onRemove }) => {
   const [, { onCartChange }] = useActions();
+  const [isLoading] = useCartLoading();
 
   const onClick = (event) => {
     event.preventDefault();
+    if (isLoading) return;
     onRemove();
     onCartChange({
       quantity: 0,

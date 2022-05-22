@@ -17,11 +17,39 @@ code {
 }
 
 ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.right {
+  float: right;
+  position: relative;
+}
+
+.global-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  padding: 13px 20px;
+  text-align: center;
+  line-height: 1.2;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-break: break-word;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  border-color: var(--button-color-border, #ffd100);
+  background: var(--button-color-background, #ffd100);
+  color: var(--button-color-text, #3a3a3a);
+  border-radius: 100px;
 }

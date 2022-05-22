@@ -3,6 +3,7 @@ import EmptyCart from './empty-cart';
 import { Cart } from './cart';
 import { useCartLoading, useIsEmpty, useActions, useCart } from '../store';
 import Loader from './loader';
+import Suggestions from './suggestions';
 
 function SideCartContainer({ isOpen, onClose }) {
   const [isLoading] = useCartLoading();
@@ -28,14 +29,17 @@ function SideCartContainer({ isOpen, onClose }) {
     <div className={`side-cart-wrapper ${isOpen ? 'active_link' : ''}`}>
       <div className="side-cart-overlay" onClick={onClose}></div>
       <div className="side-cart">
-        <div className="side-cart-container">
-          <div className="side-cart-header">
-            <h4>Your Cart</h4>
-            <span className="side-cart-close" onClick={onClose}>
-              ✕
-            </span>
+        <div className="side-cart-cover">
+          <div className="side-cart-container">
+            <div className="side-cart-header">
+              <h4>Your Cart</h4>
+              <span className="side-cart-close" onClick={onClose}>
+                ✕
+              </span>
+            </div>
+            {isLoading ? <Loader /> : loadCart()}
           </div>
-          {isLoading ? <Loader /> : loadCart()}
+          <Suggestions />
         </div>
       </div>
     </div>

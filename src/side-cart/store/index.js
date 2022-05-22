@@ -23,31 +23,39 @@ const cartActions = {
     },
   onCartAdd:
     (handle, quantity = 1) =>
-    ({ getState, dispatch }) => {
+    ({ setState, getState, dispatch }) => {
       const { [handle]: product } = getState();
+      setState({
+        isLoading: true,
+      });
+      const params = {
+        id: product.variants[0].id,
+        quantity,
+      };
+
+      if (product.selling_plan_groups?.[0]?.name === 'Remi Club') {
+        params.selling_plan =
+          product.selling_plan_groups[0].selling_plans[0].id;
+        params.purchase_option =
+          product.variants[0].selling_plan_allocations[0].selling_plan_group_id;
+      }
+
       postData('cart/add.js', {
-        items: [
-          {
-            selling_plan: product.selling_plan_groups[0].selling_plans[0].id,
-            purchase_option:
-              product.variants[0].selling_plan_allocations[0]
-                .selling_plan_group_id,
-            id: product.variants[0].id,
-            quantity,
-          },
-        ],
+        items: [params],
       }).then(() => {
         dispatch(cartActions.getCartData());
       });
     },
   onCartUpdate:
     ({ item: itemToBeRemoved, line }) =>
-    ({ dispatch, getState }) => {
+    ({ dispatch, getState, setState }) => {
       const {
         [itemToBeRemoved.handle]: product,
         cart: { items },
       } = getState();
-
+      setState({
+        isLoading: true,
+      });
       postData('cart/change.js', {
         line,
         quantity: 0,
@@ -79,10 +87,10 @@ const cartActions = {
   onCartChange:
     (params) =>
     ({ setState, dispatch }) => {
-      console.log(params);
       postForm('cart/change.js', params).then((cart) => {
         setState({
           cart,
+          isLoading: false,
         });
       });
     },
@@ -92,14 +100,11 @@ const cartActions = {
 };
 
 const productActions = {
-  getAllProducts:
+  getProducts:
     () =>
-    ({ setState, getState }) => {
-      getData('products.json').then((res) => {
-        setState({
-          products: res.products,
-        });
-      });
+    ({ dispatch, getState }) => {
+      const { products } = getState();
+      dispatch(productActions.getProductsByHandle(products));
     },
   getProductsByHandle:
     (handles) =>
@@ -128,7 +133,12 @@ const productActions = {
 //Store
 export const store = createStore({
   initialState: {
-    products: null,
+    products: [
+      'custom-night-guard',
+      'custom-teeth-whitening-kit',
+      'whitening-gel',
+      'whiteningfoam',
+    ],
     cart: null,
     isLoading: true,
   },
@@ -144,6 +154,7 @@ export const MiniCartStore = createContainer(store, {
     () =>
     ({ setState, dispatch }, props) => {
       dispatch(store.actions.getCartData());
+      dispatch(store.actions.getProducts());
     },
 });
 
@@ -189,7 +200,14 @@ export const useActions = createHook(store, {
 });
 
 export const useProducts = createHook(store, {
-  selector: (state) => state.products,
+  selector: (state) => {
+    return state.products.reduce((list, handle) => {
+      if (state[handle]) {
+        list.push(state[handle]);
+      }
+      return list;
+    }, []);
+  },
 });
 
 export const useUpsell = createHook(store, {

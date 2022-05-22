@@ -1,27 +1,27 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useActions } from '../../../../../store';
+import { useActions, useCartLoading } from '../../../../../store';
 import Plus from './plus.svg';
 import Minus from './minus.svg';
 
 const Quantity = ({ id, quantity, variant, line, onRemove }) => {
   const [qty, setQty] = useState(quantity);
-
+  const [isLoading] = useCartLoading();
   const [, { onCartChange }] = useActions();
 
   const onMinus = useCallback(() => {
+    if (isLoading) return;
     setQty((value) => {
       if (value === 1) onRemove();
-      else {
-        onCartChange({
-          quantity: value - 1,
-          line,
-        });
-      }
+      onCartChange({
+        quantity: value - 1,
+        line,
+      });
       return value - 1;
     });
-  }, [onRemove, line, onCartChange]);
+  }, [onRemove, line, onCartChange, isLoading]);
 
   const onPlus = useCallback(() => {
+    if (isLoading) return;
     setQty((value) => {
       onCartChange({
         quantity: value + 1,
@@ -29,7 +29,7 @@ const Quantity = ({ id, quantity, variant, line, onRemove }) => {
       });
       return value + 1;
     });
-  }, [line, onCartChange]);
+  }, [line, onCartChange, isLoading]);
 
   return (
     <div className="product-quantity-box">
@@ -49,6 +49,7 @@ const Quantity = ({ id, quantity, variant, line, onRemove }) => {
         id={`updates_${id}`}
         value={qty}
         max={variant?.inventory_quantity}
+        onChange={() => {}}
       />
       <span
         onClick={onPlus}

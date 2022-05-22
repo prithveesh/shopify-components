@@ -5,8 +5,8 @@ const Loader = () => {
   return (
     <div className="side-cart-loading">
       <ul className="side-cart-footer">
-        {shimmers.map(() => (
-          <li className="mini-cart__item">
+        {shimmers.map((_, index) => (
+          <li className="mini-cart__item" key={index}>
             <a>
               <div className="cart_image mini-cart__item-image elem-loading"></div>
             </a>

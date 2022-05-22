@@ -2,7 +2,7 @@ export const fetchData = async (url, options = {}) => {
   const requestUrl = window.Shopify.routes.root + url;
   const data = await fetch(requestUrl, options);
   const response = await data.json();
-  console.log(response);
+  // console.log(response);
   return response;
 };
 

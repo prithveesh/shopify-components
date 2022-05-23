@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { MiniCartStore } from './store';
 import SideCartContainer from './ui';
+import './style.css';
 
 function SideCart({ onClose, isOpen }) {
   const [cartOpen, setOpen] = useState(false);

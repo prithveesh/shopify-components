@@ -69,7 +69,18 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "parserOptions": {
+      "babelOptions": {
+        "presets": [
+          [
+            "babel-preset-react-app",
+            false
+          ],
+          "@babel/preset-react"
+        ]
+      }
+    }
   },
   "browserslist": {
     "production": [
@@ -140,6 +151,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.17.12",
     "babel-plugin-relay": "^13.2.0",
     "graphql": "^16.5.0",
     "react-svg-loader": "^3.0.3",

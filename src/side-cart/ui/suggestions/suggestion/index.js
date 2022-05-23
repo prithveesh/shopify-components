@@ -8,14 +8,10 @@ const Suggestion = ({ product }) => {
   };
 
   let meta = '';
-  let price = product.price;
-  const sellingPlanGroups = product.selling_plan_groups?.[0];
-  if (sellingPlanGroups?.name === 'Remi Club') {
-    const sellingPlan = sellingPlanGroups.selling_plans[0];
-    if (sellingPlan) {
-      meta = sellingPlan.name;
-      price = sellingPlan.price_adjustments[0].value;
-    }
+  let price = product.price / 100;
+  if (product.data.hasSubscription) {
+    meta = product.data.variants[1].meta;
+    price = product.data.variants[1].price;
   }
 
   return (
@@ -26,10 +22,11 @@ const Suggestion = ({ product }) => {
         alt={product.title}
       />
       <h3 className="side-cart-suggestion-title">{product.title}</h3>
+      <span className="side-cart-suggestion-stars"></span>
       <p className="side-cart-suggestion-meta">{meta}</p>
       <p className="side-cart-suggestion-price">
         {symbol}
-        {price / 100}
+        {price}
       </p>
       <button
         className="side-cart-suggestion-button global-button"

@@ -14,7 +14,11 @@ const Suggestions = () => {
   return (
     <div className="side-cart-suggestions-wrapper">
       <h3 className="side-cart-suggestions-heading">You May Also Like</h3>
-      <div className="side-cart-suggestions-list">
+      <div
+        className={`side-cart-suggestions-list ${
+          products.length > 2 ? 'two' : ''
+        }`}
+      >
         {products.map((product, index) => (
           <Suggestion product={product} key={`${product.key}:${index}`} />
         ))}

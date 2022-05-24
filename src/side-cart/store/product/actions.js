@@ -1,5 +1,5 @@
 import { getData } from '../utils';
-
+import { PRODUCTS } from '../contants';
 export const getProducts =
   () =>
   ({ dispatch, getState }) => {
@@ -28,6 +28,7 @@ const parseProductData = (res) => {
         meta: undefined,
       },
     ],
+    ...PRODUCTS[product.handle],
   };
 
   if (product.data.hasSubscription) {

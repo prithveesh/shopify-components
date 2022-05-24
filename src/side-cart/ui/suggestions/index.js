@@ -1,13 +1,8 @@
-import { useProducts, useCurrency } from '../../store';
+import { useProductSuggestions } from '../../store';
 import Suggestion from './suggestion';
 
 const Suggestions = () => {
-  const [products, { onCartAdd }] = useProducts();
-  const [symbol] = useCurrency();
-
-  const handleClick = (product) => {
-    onCartAdd(product.handle, 1);
-  };
+  const [products] = useProductSuggestions();
 
   if (!products?.length) return null;
 

@@ -33,7 +33,24 @@ export const useUpsell = createHook(store, {
     if (product?.data.hasSubscription) {
       return product.data.variants[1].selling_plan;
     }
-
     return false;
+  },
+});
+
+export const useHasSwap = createHook(store, {
+  selector: (state, product) => {
+    const { handle } = product;
+    const {
+      cart: { items },
+    } = state;
+    if (product.data.hasSubscription) {
+      const index = items.findIndex(
+        (item) => item.handle === handle && !item.selling_plan_allocation,
+      );
+      if (index > -1) {
+        return { item: items[index], line: index + 1 };
+      }
+    }
+    return null;
   },
 });

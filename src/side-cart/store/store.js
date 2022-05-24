@@ -1,6 +1,6 @@
 import { createStore } from 'react-sweet-state';
-import * as cartActions from './actions/cart';
-import * as productActions from './actions/product';
+import * as cartActions from './cart/actions';
+import * as productActions from './product/actions';
 //Store
 const store = createStore({
   initialState: {

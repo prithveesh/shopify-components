@@ -484,8 +484,9 @@
     padding: 0;
   }
 
-  .side-cart-suggestions-list {
-    grid-template-columns: 1fr 1fr;
+  .side-cart-suggestions-list,
+  .side-cart-suggestions-list.two {
+    grid-template-columns: 1fr;
   }
 
   .side-cart-suggestions-wrapper {

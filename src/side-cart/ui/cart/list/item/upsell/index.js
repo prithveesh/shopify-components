@@ -14,7 +14,7 @@ const UpSell = ({ item, line }) => {
       className="global-button global-button--primary"
       onClick={onClick}
     >
-      Join the Remi Club <span>& Save 20%</span>
+      Upgrade to Remi Club & Save 20%
     </button>
   );
 };

@@ -10,7 +10,7 @@ function SideCartContainer({ onClose }) {
   const [cartOpen, setOpen] = useState(false);
 
   useEffect(() => {
-    setOpen(true);
+    setTimeout(() => setOpen(true), 60);
   }, []);
 
   const handleClose = useCallback(() => {

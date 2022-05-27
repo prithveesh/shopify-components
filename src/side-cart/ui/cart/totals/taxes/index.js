@@ -1,16 +1,23 @@
+import {
+  TAXES_INCLUDED,
+  TAXES_N_SHIPPING_CHECKOUT,
+  TAXES_INCLUDED_SHIPPING_CHECKOUT,
+  TAXES_SHIPPING_CHECKOUT,
+} from '@partners/text';
 import { useThemeSettings } from '../../../../store';
 
 const Taxes = ({ taxes_included }) => {
   const [{ shipping_policy }] = useThemeSettings();
 
-  let taxes_shipping_checkout = 'Taxes and shipping calculated at checkout';
+  let taxes_shipping_checkout = TAXES_SHIPPING_CHECKOUT;
   if (taxes_included && shipping_policy?.body) {
-    taxes_shipping_checkout = `Tax included. <a href="${shipping_policy.url}">Shipping</a> calculated at checkout.`;
+    taxes_shipping_checkout = TAXES_INCLUDED_SHIPPING_CHECKOUT(
+      shipping_policy.url,
+    );
   } else if (taxes_included) {
-    taxes_shipping_checkout =
-      'Tax included and shipping calculated at checkout';
+    taxes_shipping_checkout = TAXES_INCLUDED;
   } else if (shipping_policy?.body) {
-    taxes_shipping_checkout = `Taxes and <a href="${shipping_policy.url}">shipping</a> calculated at checkout`;
+    taxes_shipping_checkout = TAXES_N_SHIPPING_CHECKOUT(shipping_policy.url);
   }
   return (
     <li className="hide-on-empty">

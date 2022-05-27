@@ -1,3 +1,4 @@
+import { UPSELL } from '@partners/text';
 import { useUpsell } from '../../../../../store';
 
 const UpSell = ({ item, line }) => {
@@ -14,7 +15,7 @@ const UpSell = ({ item, line }) => {
       className="global-button global-button--primary"
       onClick={onClick}
     >
-      Upgrade to Remi Club & Save 20%
+      {UPSELL}
     </button>
   );
 };

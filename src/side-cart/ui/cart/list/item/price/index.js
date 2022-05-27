@@ -1,10 +1,9 @@
+import { FREE } from '@partners/text';
 import { useCurrency } from '../../../../../store';
 
 const Price = ({ item }) => {
   const [symbol] = useCurrency();
-  if (item.price <= 0) {
-    return 'Free';
-  }
+  if (item.price <= 0) return FREE;
 
   const isSale =
     item.price < item.variant?.compare_at_price ||

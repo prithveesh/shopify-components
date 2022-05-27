@@ -1,3 +1,4 @@
+import { SAVINGS } from '@partners/text';
 import { useThemeSettings } from '../../../../store';
 
 const Savings = ({ total_saving, total_discount, symbol }) => {
@@ -13,7 +14,7 @@ const Savings = ({ total_saving, total_discount, symbol }) => {
           {total_saving + total_discount}
         </span>
       </span>
-      <span>Savings</span>
+      <span>{SAVINGS}</span>
     </li>
   );
 };

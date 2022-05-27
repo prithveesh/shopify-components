@@ -1,23 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
 import { MiniCartStore } from './store';
-import SideCartContainer from './ui';
+import MainSideCart from './main';
 import './style.css';
 
-function SideCart({ onClose, isOpen }) {
-  const [cartOpen, setOpen] = useState(false);
-  useEffect(() => {
-    if (isOpen) setOpen(true);
-  }, [isOpen]);
-  const handleClose = useCallback(() => {
-    setOpen(false);
-    setTimeout(() => onClose(), 500);
-  }, [onClose]);
-
+function SideCart() {
   return (
     <MiniCartStore>
-      {isOpen && <SideCartContainer onClose={handleClose} isOpen={cartOpen} />}
+      <MainSideCart />
     </MiniCartStore>
   );
 }
+
+window.openCartEvent = new Event('open-mini-cart');
+window.closeCartEvent = new Event('close-mini-cart');
 
 export default SideCart;

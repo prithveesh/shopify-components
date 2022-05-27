@@ -61,9 +61,10 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
-    "start:remi": "CLIENT=remi HTTPS=false NODE_ENV=development node scripts/start.js",
-    "start:kalavita": "CLIENT=kalavita HTTPS=false NODE_ENV=development node scripts/start.js",
-    "build": "node scripts/build.js GENERATE_SOURCEMAP=false NODE_ENV=production",
+    "remi": "CLIENT=remi HTTPS=false NODE_ENV=development node scripts/start.js",
+    "kalavita": "CLIENT=kalavita HTTPS=false NODE_ENV=development node scripts/start.js",
+    "build:remi": "CLIENT=remi GENERATE_SOURCEMAP=false NODE_ENV=production node scripts/build.js",
+    "build:kalavita": "CLIENT=kalavita GENERATE_SOURCEMAP=false NODE_ENV=production node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

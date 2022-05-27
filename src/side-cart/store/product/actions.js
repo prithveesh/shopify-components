@@ -1,6 +1,5 @@
-import { SELLING_PLAN_GROUP_NAME } from '@partners/constants';
+import { SELLING_PLAN_GROUP_NAME, PRODUCTS } from '@partners/constants';
 import { getData } from '../utils';
-import { PRODUCTS } from '../contants';
 export const getProducts =
   () =>
   ({ dispatch, getState }) => {

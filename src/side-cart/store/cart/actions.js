@@ -2,7 +2,7 @@ import { getData, postData, postForm } from '../utils';
 
 export const getCartData =
   () =>
-  ({ setState, dispatch }) => {
+  ({ setState }) => {
     setState({
       isLoading: true,
     });

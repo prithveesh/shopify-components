@@ -1,3 +1,4 @@
+import { SUBTOTAL } from '@partners/text';
 const SubTotal = ({ total_price, symbol }) => {
   return (
     <li className="cart_subtotal js-cart_subtotal">
@@ -8,7 +9,7 @@ const SubTotal = ({ total_price, symbol }) => {
         </span>
       </span>
 
-      <span>Subtotal</span>
+      <span>{SUBTOTAL}</span>
     </li>
   );
 };

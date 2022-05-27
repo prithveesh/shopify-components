@@ -1,3 +1,10 @@
+import {
+  ORDER_NOTES,
+  TERMS_N_CONDITION,
+  VIEW_TERMS,
+  PROCEED_TO_CHECKOUT,
+  GO_TO_CART,
+} from '@partners/text';
 import { useThemeSettings, useCart } from '../../../store/index';
 
 const Buttons = () => {
@@ -16,7 +23,7 @@ const Buttons = () => {
   return (
     <li className="side-cart-buttons">
       {display_special_instructions && go_to_checkout && (
-        <textarea id="note" name="note" rows="2" placeholder="Order Notes">
+        <textarea id="note" name="note" rows="2" placeholder={ORDER_NOTES}>
           {note}
         </textarea>
       )}
@@ -30,9 +37,7 @@ const Buttons = () => {
             required
           />
 
-          <label className="tos_label">
-            I Agree with the Terms & Conditions
-          </label>
+          <label className="tos_label">{TERMS_N_CONDITION}</label>
 
           {tos_page && (
             <a
@@ -41,7 +46,7 @@ const Buttons = () => {
               className="tos_icon"
               rel="noreferrer"
             >
-              [View Terms]
+              {VIEW_TERMS}
             </a>
           )}
         </p>
@@ -56,7 +61,7 @@ const Buttons = () => {
           className="global-button global-button--primary add_to_cart"
           data-minicart-checkout-button
         >
-          Proceed to Checkout →
+          {PROCEED_TO_CHECKOUT}
         </button>
       ) : (
         <button
@@ -67,7 +72,7 @@ const Buttons = () => {
           {show_lock_icon && go_to_checkout && (
             <span className="icon-lock"></span>
           )}
-          Go to cart{' '}
+          {GO_TO_CART}{' '}
         </button>
       )}
     </li>

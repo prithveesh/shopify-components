@@ -1,3 +1,4 @@
+import { ADD, SWAP } from '@partners/text';
 import { useCurrency, useHasSwap } from '../../../store';
 
 const Suggestion = ({ product }) => {
@@ -40,7 +41,7 @@ const Suggestion = ({ product }) => {
         className="side-cart-suggestion-button global-button"
         onClick={() => handleClick(product)}
       >
-        {swapWith ? 'Swap' : '+Add'}
+        {swapWith ? SWAP : ADD}
       </button>
     </div>
   );

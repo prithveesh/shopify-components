@@ -1,15 +1,11 @@
+import { PRODUCTS } from '@partners/constants';
 import { createStore } from 'react-sweet-state';
 import * as cartActions from './cart/actions';
 import * as productActions from './product/actions';
 //Store
 const store = createStore({
   initialState: {
-    products: [
-      'custom-night-guard',
-      'custom-teeth-whitening-kit',
-      'whitening-gel',
-      'whiteningfoam',
-    ],
+    products: PRODUCTS,
     cart: null,
     isLoading: true,
   },

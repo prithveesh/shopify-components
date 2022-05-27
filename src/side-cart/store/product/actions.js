@@ -1,3 +1,4 @@
+import { SELLING_PLAN_GROUP_NAME } from '@partners/constants';
 import { getData } from '../utils';
 import { PRODUCTS } from '../contants';
 export const getProducts =
@@ -15,11 +16,12 @@ export const getProductsByHandle =
   };
 
 const parseProductData = (res) => {
+  if (!res?.variants) return null;
   const product = res;
   const sellingPlanGroup = product.selling_plan_groups?.[0];
   product.data = {
     id: product.variants[0].id,
-    hasSubscription: !!(sellingPlanGroup?.name === 'Remi Club'),
+    hasSubscription: !!(sellingPlanGroup?.name === SELLING_PLAN_GROUP_NAME),
     variants: [
       {
         selling_plan: undefined,

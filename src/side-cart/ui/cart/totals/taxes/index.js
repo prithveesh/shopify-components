@@ -5,12 +5,12 @@ const Taxes = ({ taxes_included }) => {
 
   let taxes_shipping_checkout = 'Taxes and shipping calculated at checkout';
   if (taxes_included && shipping_policy?.body) {
-    taxes_shipping_checkout = `Tax included. <a href="${shipping_policy.url}">Shipping<\/a> calculated at checkout.`;
+    taxes_shipping_checkout = `Tax included. <a href="${shipping_policy.url}">Shipping</a> calculated at checkout.`;
   } else if (taxes_included) {
     taxes_shipping_checkout =
       'Tax included and shipping calculated at checkout';
   } else if (shipping_policy?.body) {
-    taxes_shipping_checkout = `Taxes and <a href="${shipping_policy.url}">shipping<\/a> calculated at checkout`;
+    taxes_shipping_checkout = `Taxes and <a href="${shipping_policy.url}">shipping</a> calculated at checkout`;
   }
   return (
     <li className="hide-on-empty">

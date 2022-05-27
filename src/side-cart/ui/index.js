@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import EmptyCart from './empty-cart';
 import { Cart } from './cart';
 import { useCartLoading, useIsEmpty, useActions, useCart } from '../store';

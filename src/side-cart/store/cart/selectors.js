@@ -39,6 +39,7 @@ export const useUpsell = createHook(store, {
 
 export const useHasSwap = createHook(store, {
   selector: (state, product) => {
+    if (!product) return null;
     const { handle } = product;
     const {
       cart: { items },

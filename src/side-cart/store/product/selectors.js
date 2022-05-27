@@ -13,6 +13,7 @@ export const useProductSuggestions = createHook(store, {
     const { cart, products } = state;
     return products.reduce((list, handle) => {
       const product = state[handle];
+      if (!product) return list;
       if (
         cart?.items.find(
           (item) =>

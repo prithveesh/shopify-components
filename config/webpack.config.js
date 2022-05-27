@@ -186,7 +186,7 @@ module.exports = function (webpackEnv) {
     }
     return loaders;
   };
-
+  console.log(paths.clients[process.env.CLIENT]);
   return {
     target: ['browserslist'],
     // Webpack noise constrained to errors and warnings
@@ -323,6 +323,7 @@ module.exports = function (webpackEnv) {
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
         // Allows for better profiling with ReactDevTools
+        '@partners': paths.clients[process.env.CLIENT],
         ...(isEnvProductionProfile && {
           'react-dom$': 'react-dom/profiling',
           'scheduler/tracing': 'scheduler/tracing-profiling',

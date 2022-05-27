@@ -6,7 +6,7 @@ export const getCartData =
     setState({
       isLoading: true,
     });
-    getData('cart.json').then((cart) => {
+    getData('cart.js').then((cart) => {
       setState({
         cart,
         isLoading: false,

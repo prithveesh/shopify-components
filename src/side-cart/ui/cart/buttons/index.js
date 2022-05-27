@@ -1,6 +1,6 @@
 import { useThemeSettings, useCart } from '../../../store/index';
 
-const Buttons = ({}) => {
+const Buttons = () => {
   const [{ note }] = useCart();
   const [
     {
@@ -35,7 +35,12 @@ const Buttons = ({}) => {
           </label>
 
           {tos_page && (
-            <a href={tos_page} target="_blank" className="tos_icon">
+            <a
+              href={tos_page}
+              target="_blank"
+              className="tos_icon"
+              rel="noreferrer"
+            >
               [View Terms]
             </a>
           )}

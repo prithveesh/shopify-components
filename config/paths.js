@@ -50,8 +50,16 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
+const clients = {
+  clientConfig: resolveApp('partners-config'),
+  remi: resolveApp('src/partners/remi'),
+  kalavita: resolveApp('src/partners/kalavita'),
+  beginhealth: resolveApp('src/partners/beginhealth'),
+};
+
 // config after eject: we're in ./config/
 module.exports = {
+  clients,
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appBuild: resolveApp(buildPath),

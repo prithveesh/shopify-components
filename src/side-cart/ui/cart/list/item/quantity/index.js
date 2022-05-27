@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useActions, useCartLoading } from '../../../../../store';
 import Plus from './plus.svg';
 import Minus from './minus.svg';

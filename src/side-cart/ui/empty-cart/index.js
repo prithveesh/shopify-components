@@ -1,15 +1,15 @@
-import { CONTINUE_SHOPPING, EMPTY_CART } from '@partners/text';
+import * as TEXT from '@partners/text';
 
 export const EmptyCart = ({ onClose }) => {
   return (
     <div className="side-cart-empty">
-      <p className="empty_cart">{EMPTY_CART}</p>
+      <p className="empty_cart">{TEXT.EMPTY_CART}</p>
       <button
         type="button"
         className="global-button global-button--primary"
         onClick={onClose}
       >
-        {CONTINUE_SHOPPING}
+        {TEXT.CONTINUE_SHOPPING}
       </button>
     </div>
   );

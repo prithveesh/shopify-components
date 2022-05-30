@@ -1,4 +1,3 @@
-export const SELLING_PLAN_GROUP_NAME = 'remi-club';
 export const PRODUCTS_HANDLES = [
   'custom-night-guard',
   'custom-teeth-whitening-kit',

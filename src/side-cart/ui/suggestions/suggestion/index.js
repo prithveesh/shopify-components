@@ -1,4 +1,4 @@
-import { ADD, SWAP } from '@partners/text';
+import * as TEXT from '@partners/text';
 import { useCurrency, useHasSwap } from '../../../store';
 
 const Suggestion = ({ product }) => {
@@ -28,10 +28,12 @@ const Suggestion = ({ product }) => {
         alt={product.title}
       />
       <h3 className="side-cart-suggestion-title">{product.title}</h3>
-      <span className="side-cart-suggestion-rating">
-        <span className="side-cart-suggestion-stars"></span>
-        {product.data.stars} reviews
-      </span>
+      {product.data.stars && (
+        <span className="side-cart-suggestion-rating">
+          <span className="side-cart-suggestion-stars"></span>
+          {product.data.stars} {TEXT.REVIEWS}
+        </span>
+      )}
       <p className="side-cart-suggestion-meta">{meta}</p>
       <p className="side-cart-suggestion-price">
         {symbol}
@@ -41,7 +43,7 @@ const Suggestion = ({ product }) => {
         className="side-cart-suggestion-button global-button"
         onClick={() => handleClick(product)}
       >
-        {swapWith ? SWAP : ADD}
+        {swapWith ? TEXT.SWAP : TEXT.ADD}
       </button>
     </div>
   );

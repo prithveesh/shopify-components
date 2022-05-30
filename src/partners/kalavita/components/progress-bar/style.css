@@ -1,0 +1,8 @@
+.progress-bar-container {
+  text-align: left;
+  padding: 0 20px;
+}
+
+.progress-bar-base {
+  width: 100%;
+}

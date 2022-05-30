@@ -1,23 +1,21 @@
-import { UPSELL } from '@partners/text';
-import { useUpsell } from '../../../../../store';
+import ItemUpSell from '@partners/components/item-upsell';
 
-const UpSell = ({ item, line }) => {
-  const [isUpsell, { onCartUpdate }] = useUpsell(item);
-
-  if (!isUpsell) return null;
-  const onClick = () => {
-    onCartUpdate({ item, line });
+const Upsell = ({ onCartChange, isUpsell, item, line, product }) => {
+  const handleChange = () => {
+    let selling_plan = null;
+    if (isUpsell) {
+      const { variants } = product;
+      const { id } = item;
+      const variant = variants.find((variant) => id === variant.id);
+      selling_plan = variant.selling_plan_allocations[0].selling_plan_id;
+    }
+    onCartChange({
+      selling_plan,
+      line,
+      quantity: item.quantity,
+    });
   };
-  return (
-    <button
-      type="button"
-      name="checkout"
-      className="global-button global-button--primary"
-      onClick={onClick}
-    >
-      {UPSELL}
-    </button>
-  );
+  return <ItemUpSell isUpsell={isUpsell} handleChange={handleChange} />;
 };
 
-export default UpSell;
+export default Upsell;

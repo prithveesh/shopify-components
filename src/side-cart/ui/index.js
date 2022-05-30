@@ -1,9 +1,11 @@
 import { useEffect, useState, useCallback } from 'react';
-import { YOU_CART } from '@partners/text';
+import * as TEXT from '@partners/text';
+import { showSuggestions } from '@partners/conditions';
 import MainSideCartContainer from './main';
 import { useCartLoading } from '../store';
 import Loader from './loader';
 import Suggestions from './suggestions';
+import './style.css';
 
 function SideCartContainer({ onClose }) {
   const [isLoading] = useCartLoading();
@@ -25,7 +27,7 @@ function SideCartContainer({ onClose }) {
         <div className="side-cart-cover">
           <div className="side-cart-container">
             <div className="side-cart-header">
-              <h4>{YOU_CART}</h4>
+              <h4>{TEXT.YOU_CART}</h4>
               <span className="side-cart-close" onClick={handleClose}>
                 ✕
               </span>
@@ -36,7 +38,7 @@ function SideCartContainer({ onClose }) {
               <MainSideCartContainer onClose={handleClose} />
             )}
           </div>
-          <Suggestions />
+          {showSuggestions && <Suggestions />}
         </div>
       </div>
     </div>

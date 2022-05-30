@@ -5,7 +5,7 @@ import { useIsEmpty } from '../store';
 function MainSideCartContainer({ onClose }) {
   const [isEmpty] = useIsEmpty();
   if (isEmpty) {
-    <EmptyCart onClose={onClose} />;
+    return <EmptyCart onClose={onClose} />;
   }
   return <Cart />;
 }

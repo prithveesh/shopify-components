@@ -1,10 +1,6 @@
-import { useActions, useCartLoading } from '../../../../../store';
-import DeleteIcon from './delete.svg';
+import ItemDelete from '@partners/components/item-delete';
 
-const DeleteItem = ({ line, onRemove }) => {
-  const [, { onCartChange }] = useActions();
-  const [isLoading] = useCartLoading();
-
+const Delete = ({ line, onRemove, onCartChange, isLoading }) => {
   const onClick = (event) => {
     event.preventDefault();
     if (isLoading) return;
@@ -22,9 +18,9 @@ const DeleteItem = ({ line, onRemove }) => {
       data-line-id={`${line}`}
       onClick={onClick}
     >
-      <DeleteIcon />
+      <ItemDelete />
     </a>
   );
 };
 
-export default DeleteItem;
+export default Delete;

@@ -1,13 +1,24 @@
+import { useState } from 'react';
+import ItemLayoutRenderer from '@partners/components/item-layout-renderer';
+import {
+  useActions,
+  useCartLoading,
+  useProduct,
+  useUpsell,
+} from '../../../../store';
 import DeleteItem from './delete';
 import ItemImage from './item-image';
 import Quantity from './quantity';
 import Price from './price';
 import Title from './title';
-import { useState } from 'react';
-import UpSell from './upsell/index';
+import Upsell from './upsell';
 
 const Item = ({ item, index }) => {
+  const [, { onCartChange, onCartUpdate }] = useActions();
+  const [isUpsell] = useUpsell(item);
+  const [isLoading] = useCartLoading();
   const [isRemove, setRemove] = useState(false);
+  const [product] = useProduct(item.handle);
 
   const handleRemove = () => setRemove(true);
 
@@ -19,21 +30,41 @@ const Item = ({ item, index }) => {
       data-variant-id={item.id}
     >
       <ItemImage image={item.image} alt={item.title} url={item.url} />
-      <div className="mini-cart__item-content">
-        <Title item={item} />
-        <Quantity
-          line={index + 1}
-          id={item.id}
-          variant={item.variant}
-          quantity={item.quantity}
-          onRemove={handleRemove}
-        />
-      </div>
-      <div className="mini-cart__item-price">
-        <DeleteItem line={index + 1} onRemove={handleRemove} />
-        <Price item={item} />
-      </div>
-      <UpSell item={item} line={index + 1} />
+      <ItemLayoutRenderer
+        product={product}
+        item={item}
+        line={index + 1}
+        onCartChange={onCartChange}
+        onCartUpdate={onCartUpdate}
+        title={<Title item={item} />}
+        quantity={
+          <Quantity
+            line={index + 1}
+            id={item.id}
+            variant={item.variant}
+            quantity={item.quantity}
+            onRemove={handleRemove}
+          />
+        }
+        deleteItem={
+          <DeleteItem
+            isLoading={isLoading}
+            onCartChange={onCartChange}
+            line={index + 1}
+            onRemove={handleRemove}
+          />
+        }
+        price={<Price item={item} />}
+        upsell={
+          <Upsell
+            onCartChange={onCartChange}
+            isUpsell={isUpsell}
+            item={item}
+            line={index + 1}
+            product={product}
+          />
+        }
+      />
     </li>
   );
 };

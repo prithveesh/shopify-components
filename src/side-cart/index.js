@@ -1,6 +1,5 @@
 import { MiniCartStore } from './store';
 import MainSideCart from './main';
-import './style.css';
 
 function SideCart() {
   return (

@@ -330,7 +330,7 @@
   width: 36px;
 }
 
-.side-cart .mini-cart__item button {
+.side-cart .mini-cart__item .side-cart-upsell {
   grid-column-start: 1;
   grid-column-end: 4;
   margin-top: 10px;
@@ -515,4 +515,9 @@
     height: auto;
     padding: 10px;
   }
+}
+
+.strike {
+  text-decoration: line-through;
+  font-weight: normal;
 }

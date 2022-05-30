@@ -2,8 +2,18 @@
   "name": "mini-cart",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "remi": "CLIENT=remi HTTPS=false NODE_ENV=development node scripts/start.js",
+    "kalavita": "CLIENT=kalavita HTTPS=false NODE_ENV=development node scripts/start.js",
+    "build:remi": "CLIENT=remi GENERATE_SOURCEMAP=false NODE_ENV=production node scripts/build.js",
+    "build:kalavita": "CLIENT=kalavita GENERATE_SOURCEMAP=false NODE_ENV=production node scripts/build.js",
+    "dev-server": "nodemon --exec babel-node ./server/index.mjs localhost 8080 --watch ./server",
+    "test": "node scripts/test.js"
+  },
   "dependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -17,6 +27,7 @@
     "browserslist": "^4.18.1",
     "camelcase": "^6.2.1",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
+    "cors": "^2.8.5",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "dotenv": "^10.0.0",
@@ -24,6 +35,7 @@
     "eslint": "^8.3.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-webpack-plugin": "^3.1.1",
+    "express": "^4.18.1",
     "file-loader": "^6.2.0",
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
@@ -32,6 +44,8 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
+    "node-fetch": "^3.2.4",
+    "nodemon": "^2.0.16",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
@@ -60,13 +74,6 @@
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
   },
-  "scripts": {
-    "remi": "CLIENT=remi HTTPS=false NODE_ENV=development node scripts/start.js",
-    "kalavita": "CLIENT=kalavita HTTPS=false NODE_ENV=development node scripts/start.js",
-    "build:remi": "CLIENT=remi GENERATE_SOURCEMAP=false NODE_ENV=production node scripts/build.js",
-    "build:kalavita": "CLIENT=kalavita GENERATE_SOURCEMAP=false NODE_ENV=production node scripts/build.js",
-    "test": "node scripts/test.js"
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -79,7 +86,8 @@
             "babel-preset-react-app",
             false
           ],
-          "@babel/preset-react"
+          "@babel/preset-react",
+          "@babel/preset-env"
         ]
       }
     }
@@ -149,7 +157,8 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "@babel/preset-env"
     ]
   },
   "devDependencies": {

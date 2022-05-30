@@ -8,7 +8,7 @@ const CartList = () => {
   return (
     <ul className="cart_items js-cart_items">
       {items.map((item, index) => (
-        <Item item={item} index={index} key={`${item.key}:${index}`} />
+        <Item item={item} index={index} key={`${item.key}:${item.quantity}`} />
       ))}
     </ul>
   );

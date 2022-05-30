@@ -1,12 +1,10 @@
-// store
-export const SELLING_PLAN_GROUP_NAME = 'remi-club';
-
 // index
 export const YOU_CART = 'Your Cart';
 
 // suggestions
 export const YOU_MAY_LIKE = 'You May Also Like';
 export const SWAP = 'Swap';
+export const REVIEWS = 'reviews';
 export const ADD = '+Add';
 
 // buttons
@@ -18,11 +16,7 @@ export const VIEW_TERMS = '[View Terms]';
 export const PROCEED_TO_CHECKOUT = 'Proceed to Checkout →';
 export const GO_TO_CART = 'Go to cart';
 
-// upsell
-export const UPSELL = 'Upgrade to Remi Club & Save 20%';
-
 // cart-item
-export const FULL_PRICE = 'Pay Full Price';
 export const FREE = 'Free';
 
 // Totals

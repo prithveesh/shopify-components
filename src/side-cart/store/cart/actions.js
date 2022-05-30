@@ -74,7 +74,7 @@ export const onCartUpdate =
 export const onCartChange =
   (params) =>
   ({ setState, dispatch }) => {
-    postForm('cart/change.js', params).then((cart) => {
+    postData('cart/change.js', params).then((cart) => {
       setState({
         cart,
         isLoading: false,
